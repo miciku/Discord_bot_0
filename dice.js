@@ -1,6 +1,5 @@
 var Discord = require('discord.io');
 var logger = require('winston');
-var auth = require('./auth.json');
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -9,7 +8,7 @@ logger.add(new logger.transports.Console, {
 logger.level = "debug";
 // Initialize Discord Bot
 var bot = new Discord.Client({
-   token: auth.token,
+   token: process.env.Discord_TOKEN,
    autorun: true
 });
 bot.on("ready", function (evt) {
@@ -35,5 +34,3 @@ var ran = Math.floor(Math.random()*100)+1;//亂數產生1~100
 
      }
 });
-
-client.login(process.env.Discord_TOKEN);
